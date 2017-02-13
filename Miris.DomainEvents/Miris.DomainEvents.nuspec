@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <iconUrl>https://raw.githubusercontent.com/marcusmiris/DomainEvents/master/Miris.DomainEvents/icon.png</iconUrl>
+    <description>$description$</description>
+    <tags>DDD Domain Events CQRS event-sourcing</tags>
+    <projectUrl>https://github.com/marcusmiris/DomainEvents</projectUrl>
+  </metadata>
+</package>
