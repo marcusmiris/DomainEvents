@@ -2,7 +2,7 @@
 
 Lightweight .Net library for Domain Events implementation
 
-[![marcusmiris MyGet Build Status](https://www.myget.org/BuildSource/Badge/marcusmiris?identifier=00e46d7d-5c15-40f9-a543-f76071fcb222)](https://www.myget.org/)
+[![marcusmiris MyGet Build Status](https://www.myget.org/BuildSource/Badge/marcusmiris?identifier=fad6fc17-2289-46f4-9af2-850a080a14ba)](https://www.myget.org/)
 
 NuGet: http://nuget.org/packages/Miris.DomainEvents
 
