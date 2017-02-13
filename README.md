@@ -1,8 +1,11 @@
 # Miris.DomainEvents
 
+Lightweight .Net library for Domain Events implementation
+
 NuGet: http://nuget.org/packages/Miris.DomainEvents
 
-- Default support to immediate consistency;
+## Features
+- Default support to immediate/strong consistency through TransactionScope integration;
 - allow eventual consistency through Event Dispatcher interface implementation.
  
 ---
