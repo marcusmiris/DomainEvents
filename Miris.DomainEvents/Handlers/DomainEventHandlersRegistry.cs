@@ -7,7 +7,7 @@ namespace Miris.DomainEvents.Handlers
     /// <summary>
     ///     Lugar onde ficam registrados os handlers dos eventos.
     /// </summary>
-    internal class DomainEventHandlersRegistry
+    public class DomainEventHandlersRegistry
         : IDomainEventHandlersRegistry
     {
 
