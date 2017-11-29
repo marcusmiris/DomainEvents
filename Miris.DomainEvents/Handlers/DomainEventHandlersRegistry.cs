@@ -34,6 +34,7 @@ namespace Miris.DomainEvents.Handlers
         [DebuggerStepThrough]
         public virtual IEnumerable<IDomainEventHandler<TEvent>> GetAllHandlers<TEvent>() 
             where TEvent : IDomainEvent 
-            => RegisteredHandlers.OfType<IDomainEventHandler<TEvent>>();
+            => RegisteredHandlers?.OfType<IDomainEventHandler<TEvent>>()
+                ?? Enumerable.Empty<IDomainEventHandler<TEvent>>();
     }
 }

@@ -41,7 +41,10 @@
   <ItemGroup>
     <Compile Include="Dispatching\IDomainEventDispatcher.cs" />
     <Compile Include="DomainEvents.cs" />
+    <Compile Include="Extensions\AnonymousResourceManager.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\NullableExtensions.cs" />
+    <Compile Include="Extensions\TransactionExtensions.cs" />
     <Compile Include="Handlers\DelegateAsEventHandlerAdapter.cs" />
     <Compile Include="Handlers\DomainEventHandlersRegistry.cs" />
     <Compile Include="Handlers\IDomainEventHandler.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="IDomainEvent.cs" />
     <Compile Include="ImmediateConsistency\EventQueue.cs" />
     <Compile Include="ImmediateConsistency\ImmediatelyConsistentEventDispatcher.cs" />
+    <Compile Include="ImmediateConsistency\ImplicitTransactionScopeAttribute.cs" />
     <Compile Include="ImmediateConsistency\TransactionExtensions.cs" />
     <Compile Include="ImmediateConsistency\TransactionId.cs" />
     <Compile Include="ImmediateConsistency\TransactionScopeInterceptor.cs" />

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miris.DomainEvents", "Miris.DomainEvents\Miris.DomainEvents.csproj", "{49D70963-643F-4DFB-815C-458396B9F00D}"
 EndProject
@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miris.DomainEvents.Tests", "Miris.DomainEvents.Tests\Miris.DomainEvents.Tests.csproj", "{97B0BD1E-CC72-4D24-BC45-8375074BE344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{49D70963-643F-4DFB-815C-458396B9F00D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49D70963-643F-4DFB-815C-458396B9F00D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49D70963-643F-4DFB-815C-458396B9F00D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97B0BD1E-CC72-4D24-BC45-8375074BE344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97B0BD1E-CC72-4D24-BC45-8375074BE344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97B0BD1E-CC72-4D24-BC45-8375074BE344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97B0BD1E-CC72-4D24-BC45-8375074BE344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56096206-2BD8-4B63-BFAF-169DFE496F98}
 	EndGlobalSection
 EndGlobal

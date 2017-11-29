@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Transactions;
 using Castle.DynamicProxy;
 
@@ -12,16 +13,49 @@ namespace Miris.DomainEvents.ImmediateConsistency
 
         public void Intercept(IInvocation invocation)
         {
-            if (Transaction.Current != null)
-                invocation.Proceed();
+            // determina se deve ou não criar o escopo transactional
+            var escopoTransacionalDeveSerCriado = ((Func<bool>)(() =>
+           {
+               var enabledByAttribute = ((Func<bool>)(() =>
+               {
+                   var implicitScopeConfig = (ImplicitTransactionScopeAttribute)invocation.MethodInvocationTarget.GetCustomAttributes(typeof(ImplicitTransactionScopeAttribute), inherit: true).SingleOrDefault();
+                   return implicitScopeConfig == null || implicitScopeConfig.Criar;
+               }))();
 
+               var existeEscopoTransacional = Transaction.Current != null;
+
+               //var retornaVoidResponse = typeof(VoidResponse).IsAssignableFrom(invocation.Method.ReturnType);
+
+               return !existeEscopoTransacional
+                   //&& retornaVoidResponse          // Presume que métodos que não retornam VoidResponse não necessitam de escopo transacional.
+                   && enabledByAttribute
+                   ;
+           }))();
+
+            if (!escopoTransacionalDeveSerCriado)
+                invocation.Proceed();
             else
 
-                using (var trans = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                try
                 {
-                    invocation.Proceed();
+                    using (var trans = new TransactionScope(
+                        TransactionScopeOption.Required,
+                        new TransactionOptions()
+                        {
+                            //IsolationLevel = IsolationLevel.Snapshot,   // https://blogs.msdn.microsoft.com/diego/2012/03/31/tips-to-avoid-deadlocks-in-entity-framework-applications/
+                            Timeout = TimeSpan.FromDays(1)
+                        },
+                        TransactionScopeAsyncFlowOption.Enabled))
+                    {
+                        invocation.Proceed();
 
-                    trans.Complete();
+                        //if (invocation.ReturnValue is VoidResponse response && !response.HasError)
+                            trans.Complete();
+                    }
+                }
+                catch (TransactionAbortedException e)
+                {
+                    throw e.InnerException ?? e;
                 }
         }
 
@@ -52,7 +86,7 @@ namespace Miris.DomainEvents.ImmediateConsistency
                     ? (Func<TCandidate, IInterceptor[], TCandidate>)proxyGenerator.CreateInterfaceProxyWithTarget
                     : (Func<TCandidate, IInterceptor[], TCandidate>)proxyGenerator.CreateClassProxyWithTarget;
 
-            // cria e retorna proxy.
+                        // cria e retorna proxy.
             return proxyFactory.Invoke(
                 candidate,
                 new IInterceptor[]

@@ -76,13 +76,7 @@ namespace Miris.DomainEvents.ImmediateConsistency
             transaction.TransactionCompleted += (sender, args) => TrackedQueues.Remove(transId);
 
             // cria e retorna a queue.
-            var queue = new EventQueue();
-
-            // Phase0 Enlistment, uma vez que Event Handlers podem abrir novas sub-transações.
-            // Mais informações em https://blogs.msdn.microsoft.com/florinlazar/2006/01/29/msdtc-the-magic-of-phase-zero-phase0-or-when-using-2pc-transactions-is-not-enough/
-            transaction.EnlistVolatile(queue, EnlistmentOptions.EnlistDuringPrepareRequired); 
-
-            return TrackedQueues[transId] = queue;
+            return TrackedQueues[transId] = new EventQueue(transaction);
         }
 
 
