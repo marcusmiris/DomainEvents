@@ -5,5 +5,6 @@
         where TDomainEvent : IDomainEvent
     {
         void Handle(TDomainEvent @event);
+
     }
 }
